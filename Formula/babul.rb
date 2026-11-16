@@ -5,8 +5,8 @@ class Babul < Formula
   homepage "https://babul.dev"
   url "git@github.com:babulhq/babul.git",
       using:    :git,
-      tag:      "v0.1.5",
-      revision: "2788735b605d7c81380065ffd7cab39540e92b74"
+      tag:      "v0.1.6",
+      revision: "6fcfae4855b453e668be598960ef52175d662f0f"
   head "git@github.com:babulhq/babul.git", branch: "main", using: :git
 
   depends_on "gh"
