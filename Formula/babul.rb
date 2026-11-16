@@ -5,8 +5,8 @@ class Babul < Formula
   homepage "https://babul.dev"
   url "git@github.com:babulhq/babul.git",
       using:    :git,
-      tag:      "v0.1.2",
-      revision: "b03d7e37576ba8296f11114ba9be68757dedb9b3"
+      tag:      "v0.1.3",
+      revision: "1303f6a0bec9adb5d9fb6199757c0297f0ad1dcc"
   head "git@github.com:babulhq/babul.git", branch: "main", using: :git
 
   depends_on "gh"
@@ -17,6 +17,8 @@ class Babul < Formula
   def install
     # build where it will run: next build writes absolute paths into .next
     libexec.install Dir["*"], Dir[".[!.]*"] - [".git", ".brew_home"]
+    # a copy from Homebrew is a customer's: it starts jobs only on a valid license key
+    inreplace libexec/"apps/cli/src/polar.ts", "PACKAGED = false", "PACKAGED = true"
     cd libexec do
       system "pnpm", "install", "--frozen-lockfile"
       system "pnpm", "--filter", "web", "build"
@@ -35,6 +37,8 @@ class Babul < Formula
         babul setup
       It links the workflows into Archon and starts the scheduler and the app
       (http://localhost:4100) at login. Your data stays in ~/.babul.
+      Jobs start once your license key is in: Settings > Plan in the app, or
+        babul license <your GitHub org> <key>
     EOS
   end
 
