@@ -5,8 +5,8 @@ class Babul < Formula
   homepage "https://babul.dev"
   url "git@github.com:babulhq/babul.git",
       using:    :git,
-      tag:      "v0.1.0",
-      revision: "b246ffc5a91ff52a1f62afb94e876cb6b4af63eb"
+      tag:      "v0.1.1",
+      revision: "d9f4414eebf75a7c7fd904fdec2d1908771eb8d5"
   head "git@github.com:babulhq/babul.git", branch: "main", using: :git
 
   depends_on "coleam00/archon/archon"
@@ -21,6 +21,8 @@ class Babul < Formula
     cd libexec do
       system "pnpm", "install", "--frozen-lockfile"
       system "pnpm", "--filter", "web", "build"
+      # the build tools (TypeScript, Biome, Vitest, Playwright) are not needed to run
+      system "pnpm", "prune", "--prod"
     end
     (bin/"babul").write_env_script libexec/"bin/babul", PATH: "#{formula_opt_bin("node")}:$PATH"
   end
