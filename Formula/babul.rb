@@ -5,11 +5,10 @@ class Babul < Formula
   homepage "https://babul.dev"
   url "git@github.com:babulhq/babul.git",
       using:    :git,
-      tag:      "v0.1.1",
-      revision: "d9f4414eebf75a7c7fd904fdec2d1908771eb8d5"
+      tag:      "v0.1.2",
+      revision: "b03d7e37576ba8296f11114ba9be68757dedb9b3"
   head "git@github.com:babulhq/babul.git", branch: "main", using: :git
 
-  depends_on "coleam00/archon/archon"
   depends_on "gh"
   depends_on "lychee"
   depends_on "node"
@@ -29,7 +28,9 @@ class Babul < Formula
 
   def caveats
     <<~EOS
-      Babul also needs Claude Code: brew install --cask claude-code
+      Babul also needs Archon and Claude Code:
+        brew tap coleam00/archon && brew install coleam00/archon/archon
+        brew install --cask claude-code
       Then, once on this computer and again after each upgrade:
         babul setup
       It links the workflows into Archon and starts the scheduler and the app
@@ -38,7 +39,7 @@ class Babul < Formula
   end
 
   test do
-    assert_match libexec.to_s, shell_output("#{bin}/babul root")
+    assert_equal opt_libexec.to_s, shell_output("#{bin}/babul root").strip
     assert_match "usage: babul", shell_output("#{bin}/babul 2>&1", 2)
   end
 end
