@@ -5,8 +5,8 @@ class Babul < Formula
   homepage "https://babul.dev"
   url "git@github.com:babulhq/babul.git",
       using:    :git,
-      tag:      "v0.1.8",
-      revision: "e52178d9149ca370fe43ba9cfb9910dfc3146000"
+      tag:      "v0.1.9",
+      revision: "b847b4db4cbe26ea0b97b0662ef386f7738abc45"
   head "git@github.com:babulhq/babul.git", branch: "main", using: :git
 
   depends_on "gh"
@@ -18,7 +18,7 @@ class Babul < Formula
     # build where it will run: next build writes absolute paths into .next
     libexec.install Dir["*"], Dir[".[!.]*"] - [".git", ".brew_home"]
     # a copy from Homebrew is a customer's: it starts jobs only on a valid license key
-    inreplace libexec/"apps/cli/src/polar.ts", "PACKAGED = false", "PACKAGED = true"
+    inreplace libexec/"packages/core/src/polar.ts", "PACKAGED = false", "PACKAGED = true"
     cd libexec do
       system "pnpm", "install", "--frozen-lockfile"
       system "pnpm", "--filter", "web", "build"
