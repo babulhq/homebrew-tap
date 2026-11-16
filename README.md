@@ -1,0 +1,13 @@
+# babulhq/tap
+
+Homebrew formulae for [Babul](https://babul.dev).
+
+```sh
+brew install babulhq/tap/babul
+brew install --cask claude-code
+babul setup
+```
+
+`babul setup` links Babul's workflows into Archon and starts the scheduler and the app (http://localhost:4100) at login. Run it again after `brew upgrade babul`. Your data stays in `~/.babul`.
+
+Babul's own repo is private for now, so Homebrew clones it over SSH with your GitHub key: `ssh -T git@github.com` must greet you first.
