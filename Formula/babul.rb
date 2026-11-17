@@ -4,7 +4,7 @@ class Babul < Formula
   desc "Product factory that starts from facts and earns its freedom"
   homepage "https://babul.dev"
   url "https://github.com/babulhq/homebrew-tap/releases/download/v0.1.12/babul-0.1.12.tar.gz"
-  sha256 "94633211bae70d27bbc23eb409998abb24c32aba334adcc586d8a69425db875f"
+  sha256 "48c11a6ad2f8bf98f30873b2092dce474c79ca86f724340647baef2bdc345496"
 
   depends_on "gh"
   depends_on "lychee"
