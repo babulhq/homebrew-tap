@@ -1,5 +1,5 @@
 # Babul from its git tag. babulhq/babul is private, so Homebrew clones it over
-# SSH with your own GitHub key: only people with access can install. Public: use https.
+# SSH with your own GitHub key: only people with access can install.
 class Babul < Formula
   desc "Product factory that starts from facts and earns its freedom"
   homepage "https://babul.dev"
