@@ -1,13 +1,10 @@
-# Babul from its git tag. babulhq/babul is private, so Homebrew clones it over
-# SSH with your own GitHub key: only people with access can install.
+# Babul from its release: a built copy, never the source (the source stays private).
+# Anyone can install it; jobs start on a license key once the 14-day trial ends.
 class Babul < Formula
   desc "Product factory that starts from facts and earns its freedom"
   homepage "https://babul.dev"
-  url "git@github.com:babulhq/babul.git",
-      using:    :git,
-      tag:      "v0.1.11",
-      revision: "3c03f735536d0961d982b3da60b0bacd900f7a7c"
-  head "git@github.com:babulhq/babul.git", branch: "main", using: :git
+  url "https://github.com/babulhq/homebrew-tap/releases/download/v0.1.12/babul-0.1.12.tar.gz"
+  sha256 "94633211bae70d27bbc23eb409998abb24c32aba334adcc586d8a69425db875f"
 
   depends_on "gh"
   depends_on "lychee"
@@ -15,16 +12,7 @@ class Babul < Formula
   depends_on "pnpm"
 
   def install
-    # build where it will run: next build writes absolute paths into .next
-    libexec.install Dir["*"], Dir[".[!.]*"] - [".git", ".brew_home"]
-    # a copy from Homebrew is a customer's: it starts jobs only on a valid license key
-    inreplace libexec/"packages/core/src/polar.ts", "PACKAGED = false", "PACKAGED = true"
-    cd libexec do
-      system "pnpm", "install", "--frozen-lockfile"
-      system "pnpm", "--filter", "web", "build"
-      # the build tools (TypeScript, Biome, Vitest, Playwright) are not needed to run
-      system "pnpm", "prune", "--prod"
-    end
+    libexec.install Dir["*"], Dir[".[!.]*"] - [".brew_home"]
     (bin/"babul").write_env_script libexec/"bin/babul", PATH: "#{formula_opt_bin("node")}:$PATH"
   end
 
@@ -38,7 +26,7 @@ class Babul < Formula
       It links the workflows into Archon and starts the scheduler and the app
       (http://localhost:4100) at login. Your data stays in ~/.babul.
       Jobs start once your license key is in: Settings > Plan in the app, or
-        babul license <your GitHub org> <key>
+        babul license <key>
     EOS
   end
 
