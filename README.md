@@ -2,6 +2,14 @@
 
 Homebrew formulae for [Babul](https://babul.dev).
 
+The desktop app (preview, Apple silicon):
+
+```sh
+brew install --cask babulhq/tap/babul-app
+```
+
+The command line that runs Babul's own company:
+
 ```sh
 brew install babulhq/tap/babul
 brew tap coleam00/archon && brew install coleam00/archon/archon
