@@ -27,6 +27,5 @@ cask "babul-app" do
   caveats <<~EOS
     Babul runs its tasks with Claude Code on this Mac:
       brew install --cask claude-code
-    Your company's knowledge is kept as plain files in ~/Babul.
   EOS
 end
