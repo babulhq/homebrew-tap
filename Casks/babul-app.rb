@@ -6,17 +6,17 @@ cask "babul-app" do
   url "https://github.com/babulhq/homebrew-tap/releases/download/app-v#{version}/Babul-#{version}-arm64.zip"
   name "Babul"
   desc "Company knowledge kept in sync for every AI tool"
-  homepage "https://babul.dev"
+  homepage "https://babul.dev/"
 
   depends_on arch: :arm64
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Babul.app"
 
   # shortcut: the app is not yet signed with an Apple Developer ID, so macOS would refuse to open
   # it after download; drop this once releases are signed and notarized
-  postflight do
-    system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{appdir}/Babul.app"]
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{appdir}}/Babul.app"]
   end
 
   zap trash: [
