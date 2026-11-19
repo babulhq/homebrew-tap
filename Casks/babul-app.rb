@@ -1,7 +1,7 @@
 # The Babul desktop app, from its release: built files only (the source stays private).
 cask "babul-app" do
-  version "0.2.3"
-  sha256 "03e6066daaf314b422610918320df224ed86cd919389f532aa98892aa0cf5e62"
+  version "0.2.4"
+  sha256 "ee049570e0fc319e7ec4582c72014e44c4bba1387aa094b551323fb11681bdaa"
 
   url "https://github.com/babulhq/homebrew-tap/releases/download/app-v#{version}/Babul-#{version}-arm64.zip"
   name "Babul"
